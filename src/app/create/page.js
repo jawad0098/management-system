@@ -61,8 +61,8 @@ const CreateTeam = () => {
                                     onChange={() => handleSelectUser(user.id)} 
                                 />
                             </td>
-                            <td className="border px-4 py-2 bg-red-300">{user.id}</td>
-                            <td className="border px-4 py-2 bg-red-300">{user.email}</td>
+                            <td className="border px-4 py-2 bg-red-100">{user.id}</td>
+                            <td className="border px-4 py-2 bg-red-100">{user.email}</td>
                         </tr>
                     ))}
                 </tbody>
