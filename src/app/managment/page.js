@@ -2,25 +2,25 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import UserTasks from '../../components/UserTasks';
-import { auth } from '../firebase/firebase-config'; // Update the path as necessary
+import { auth } from '../firebase/firebase-config'; 
 import { onAuthStateChanged } from 'firebase/auth';
 
 const Page = () => {
     const [currentUserId, setCurrentUserId] = useState(null);
-    const [userTasks, setUserTasks] = useState([]); // State to store tasks
-    const [hasJoinedTeam, setHasJoinedTeam] = useState(false); // Track if user has joined team
+    const [userTasks, setUserTasks] = useState([]); 
+    const [hasJoinedTeam, setHasJoinedTeam] = useState(false); 
     const router = useRouter();
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                setCurrentUserId(user.uid); // Get the user's ID
+                setCurrentUserId(user.uid); 
             } else {
-                setCurrentUserId(null); // User is signed out
+                setCurrentUserId(null); 
             }
         });
 
-        return () => unsubscribe(); // Cleanup subscription on unmount
+        return () => unsubscribe();
     }, []);
 
     const handleCreateTeam = () => {
@@ -28,22 +28,20 @@ const Page = () => {
     };
 
     const handleJoinTeam = () => {
-        // Simulate fetching assigned tasks when user joins a team
         const tasks = [
             { id: 1, title: "Task 1", description: "This is task 1" },
             { id: 2, title: "Task 2", description: "This is task 2" },
         ];
         setUserTasks(tasks);
-        setHasJoinedTeam(true); // Mark user as joined
+        setHasJoinedTeam(true); 
     };
 
     if (!currentUserId) {
-        return <div className="text-white">Loading...</div>; // You can add a loading state here
+        return <div className="text-white">Loading...</div>; 
     }
 
     return (
         <div className='flex h-screen items-center justify-center gap-3 bg-gray-800'>
-            {/* Display tasks if user has joined team */}
             {hasJoinedTeam ? (
                 <div className="bg-gray-700 p-4 rounded-2xl text-white">
                     <h2 className="text-xl mb-4">Assigned Tasks</h2>

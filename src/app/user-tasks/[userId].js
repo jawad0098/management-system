@@ -1,4 +1,4 @@
-"use client"; // Ensures this component can use client-side features
+"use client"; 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { collection, getDocs, query, where } from 'firebase/firestore';
@@ -6,12 +6,12 @@ import { db } from '../../firebase/firebase-config';
 
 const UserTasks = () => {
     const router = useRouter();
-    const { userId } = router.query; // Get user ID from the route
+    const { userId } = router.query; 
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
         const fetchUserTasks = async () => {
-            if (!userId) return; // Return if userId is not available
+            if (!userId) return; 
 
             const q = query(collection(db, 'tasks'), where('userId', '==', userId));
             const querySnapshot = await getDocs(q);

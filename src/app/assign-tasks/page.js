@@ -1,4 +1,4 @@
-"use client"; // Ensures this component can use client-side features
+"use client";
 import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs, addDoc } from 'firebase/firestore';
@@ -10,7 +10,7 @@ const AssignTasks = () => {
     const [selectedUsers, setSelectedUsers] = useState([]);
     const [userDetails, setUserDetails] = useState([]);
     const [tasks, setTasks] = useState('');
-    const currentUserId = "currentUserId"; // Replace with the actual current user ID
+    const currentUserId = "currentUserId"; 
 
     useEffect(() => {
         const selected = searchParams.get('selected');
@@ -47,7 +47,7 @@ const AssignTasks = () => {
                 });
             }
             console.log("Tasks assigned successfully");
-            setTasks(''); // Clear the textarea after assignment
+            setTasks(''); 
         } catch (error) {
             console.error("Error assigning tasks:", error);
         }

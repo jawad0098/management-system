@@ -1,13 +1,13 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { collection, query, where, getDocs } from 'firebase/firestore';
-import { db } from '../app/firebase/firebase-config'; // Ensure correct Firebase config path
+import { db } from '../app/firebase/firebase-config'; 
 
 const UserTasksPage = ({ currentUserId }) => {
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
-        if (!currentUserId) return; // Early exit if user ID is not available
+        if (!currentUserId) return; 
 
         const fetchUserTasks = async () => {
             try {
@@ -17,7 +17,7 @@ const UserTasksPage = ({ currentUserId }) => {
                 const userTasks = querySnapshot.docs.map(doc => ({
                     id: doc.id,
                     ...doc.data(),
-                    createdAt: doc.data().createdAt?.toDate(), // Handle Firestore Timestamp
+                    createdAt: doc.data().createdAt?.toDate(), 
                 }));
                 console.log("Fetched User Tasks:", userTasks);
                 setTasks(userTasks);
